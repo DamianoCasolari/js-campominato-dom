@@ -61,19 +61,9 @@ function difficulty(select_difficulty) {
 
 //declair Function to add 16 bomb to arrayBomb
 
-function arrayBombFunction(arrayBomb) {
+function arrayBombFunction(arrayBomb, arrayCell) {
     while (arrayBomb.length < 16) {
-        let singleBomb;
-        switch (selectEl.value) {
-            case "easy_lv":
-                singleBomb = Math.floor(Math.random() * 100) + 1;
-                break;
-            case "easy_medium":
-                singleBomb = Math.floor(Math.random() * 81) + 1;
-                break;
-            default:
-                singleBomb = Math.floor(Math.random() * 49) + 1;
-        }
+        singleBomb = Math.floor(Math.random() * arrayCell.length) + 1;
         if (!arrayBomb.includes(singleBomb)) {
             arrayBomb.push(singleBomb)
         }
@@ -98,7 +88,7 @@ buttonEl.addEventListener("click", function () {
     }
     const arrayCell = document.querySelectorAll(".single_cell")
     changeBackground(arrayCell, arrayBomb, cellsGood)
-    arrayBombFunction(arrayBomb);
+    arrayBombFunction(arrayBomb,arrayCell );
 
 
 })
@@ -108,33 +98,37 @@ function changeBackground(arrayElement, arrayBomb, cellsGood) {
     for (let i = 0; i < arrayElement.length; i++) {
         const singleCell = arrayElement[i]
         singleCell.addEventListener("click", function () {
-            this.classList.add("click_background")
-            // Declair an "if" operator to understand the situation of the play 
-            if (!arrayBomb.includes(Number(this.innerText)) && !arrayCellGood.includes(this.innerText)) {
-                arrayCellGood.push(this.innerText);
-                cellsGood++;
-                if (cellsGood == arrayElement.length - arrayBomb.length) {
-                    const imageWin = `<div class="bomb_you_lose">
+            // Declair an "if" operator to understand the situation of the game 
+            if (!singleCell.classList.contains("click_background")) {
+                this.classList.add("click_background")
+                // add to good cells list every click 
+                if (!arrayBomb.includes(Number(this.innerText))) {
+                    arrayCellGood.push(this.innerText);
+                    cellsGood++;
+                    console.log(cellsGood);
+                    // you can see big Blaster element when you win
+                    if (cellsGood == arrayElement.length - arrayBomb.length) {
+                        const imageWin = `<div class="bomb_you_lose">
                 <img src="./assets/img/istockphoto-587803682-612x612.jpg" alt="artificere_you_win">
                 <div class="text-white text-center">YOU WIN<br> hai evitato una bomba ${cellsGood} volte</div>
                 </div>`
-                    document.querySelector(".main_container").insertAdjacentHTML("beforeend", imageWin)
+                        document.querySelector(".main_container").insertAdjacentHTML("beforeend", imageWin)
+                    }
+                } else {
+                    // you can see every bomb in the end of game
+                    for (let i = 0; i < arrayElement.length; i++) {
+                        let CellofBomb = arrayElement[i];
+                        if (arrayBomb.includes(Number(CellofBomb.innerText))) {
+                            CellofBomb.innerHTML = `<img class="w-100" src="./assets/img/sasdad_preview_rev_1.png" alt=" bomba, you lose">`
+                        }
+                    }
+                    // you can see big bomb element when you lose
+                    const imageBomb = `<div class="bomb_you_lose">
+                     <img src="./assets/img/sasdad_preview_rev_1.png" alt=" bomba, you lose">
+                     <div class="text-white text-center">YOU LOSE <br> hai evitato una bomba ${cellsGood} volte</div>
+                      </div>`
+                    document.querySelector(".main_container").insertAdjacentHTML("beforeend", imageBomb)
                 }
-
-            } else if (arrayCellGood.includes(this.innerText) && !arrayBomb.includes(Number(this.innerText))) { }
-            else {
-                for( let i = 0; i < arrayElement.length; i++ ){
-                    let CellofBomb = arrayElement[i];
-                    if (arrayBomb.includes(Number(CellofBomb.innerText))){
-                    CellofBomb.innerHTML = `<img class="w-100" src="./assets/img/sasdad_preview_rev_1.png" alt=" bomba, you lose">`}
-                }
-                const imageBomb = `  <div class="bomb_you_lose">
-                <img src="./assets/img/sasdad_preview_rev_1.png" alt=" bomba, you lose">
-                <div class="text-white text-center">YOU LOSE <br> hai evitato una bomba ${cellsGood} volte</div>
-                </div>`
-                document.querySelector(".main_container").insertAdjacentHTML("beforeend", imageBomb)
-
-
             }
         })
     }
