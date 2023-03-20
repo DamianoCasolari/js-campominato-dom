@@ -55,30 +55,82 @@ function difficulty(select_difficulty) {
 
 // ----------------------------
 
-//Declair Function to add addEventListener to cell of grid
-    function changeBackground(arrayElement) {
-        for (let i = 0; i < arrayElement.length; i++) {
-            const singleCell = arrayElement[i]
-            singleCell.addEventListener("click", function () {
-                this.classList.toggle("click_background")
-                console.log(this.innerText)
-            })
-        }
-    }
 
 //Event to link btn play to the creation of specific grids
-    buttonEl.addEventListener("click", function () {
-        containerEl.innerHTML = "";
-        if (selectEl.value == "easy_lv") {
-            difficulty(easy);
-        } else if (selectEl.value == "medium_lv") {
-            difficulty(medium);
-        } else {
-            difficulty(hard);
-        }
-        const arrayCell = document.querySelectorAll(".single_cell")
-        changeBackground(arrayCell)
-    })
+buttonEl.addEventListener("click", function () {
+    containerEl.innerHTML = "";
+    if (selectEl.value == "easy_lv") {
+        difficulty(easy);
+    } else if (selectEl.value == "medium_lv") {
+        difficulty(medium);
+    } else {
+        difficulty(hard);
+    }
+    const arrayCell = document.querySelectorAll(".single_cell")
+    changeBackground(arrayCell)
+})
+
+// -----------------
+
+// const arrayBomb = [];
+// let cellGood = 0;
+
+// while (arrayBomb.length < 16) {
+//     let singleBomb;
+//     switch (selectEl.value) {
+//         case "easy_lv":
+//             singleBomb = Math.floor(Math.random) * 100 + 1;
+//             break;
+//         case "easy_medium":
+//             singleBomb = Math.floor(Math.random) * 81 + 1;
+//             break;
+//         default:
+//             singleBomb = Math.floor(Math.random) * 49 + 1;
+//     }
+//     if (!arrayBomb.includes(singleBomb)) {
+//         arrayBomb.push(singleBomb)
+//     }
+// }
+// console.log(arrayBomb)
+
+// -----------------
+
+//Declair Function to add addEventListener to cell of grid
+function changeBackground(arrayElement) {
+    for (let i = 0; i < arrayElement.length; i++) {
+        const singleCell = arrayElement[i]
+        singleCell.addEventListener("click", function () {
+            this.classList.add("click_background")
+            console.log(this.innerText)
+             // aggiungo un if il numero cliccato è === ad un numero presente nell'array bombe gioco finito 
+
+            })
+    }
+}
+
+
+//creo un array bombe vuoto
+//creo una variabile vuota caselle buone
+//creo 16 numeri casuali all'interno dell'array con un if range legato ai livelli
+//nell'addvent listenr changecolor 
+// aggiungo un if il numero cliccato è === ad un numero presente nell'array bombe gioco finito 
+// aggiungo un unità alla array caselle buone seguo con un if (caselle tatali - 16 == variabile casselle buone you win ) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Animation explosion
@@ -86,7 +138,7 @@ function difficulty(select_difficulty) {
 const imgContainer = document.getElementById("img_container");
 
 function getRandomPosition() {
-    const x = window.innerWidth - 175; 
+    const x = window.innerWidth - 175;
     const randomX = Math.floor(Math.random() * x);
     return [randomX];
 }
@@ -94,7 +146,7 @@ function getRandomPosition() {
 function showImage() {
     imgContainer.style.opacity = 1;
     const x = getRandomPosition();
-    imgContainer.style.left = x + "px";   
+    imgContainer.style.left = x + "px";
 }
 
 function hideImage() {
