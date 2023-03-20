@@ -1,6 +1,9 @@
 const containerEl = document.querySelector(".main_container")
 const selectEl = document.querySelector("select")
 const buttonEl = document.querySelector(".my_btn")
+const arrayBomb = [];
+const arrayCellGood = [];
+let cellsGood = 0;
 
 const easy = 100;
 const medium = 81;
@@ -56,9 +59,36 @@ function difficulty(select_difficulty) {
 // ----------------------------
 
 
+//declair Function to add 16 bomb to arrayBomb
+
+function arrayBombFunction(arrayBomb) {
+    while (arrayBomb.length < 16) {
+        let singleBomb;
+        switch (selectEl.value) {
+            case "easy_lv":
+                singleBomb = Math.floor(Math.random() * 100) + 1;
+                break;
+            case "easy_medium":
+                singleBomb = Math.floor(Math.random() * 81) + 1;
+                break;
+            default:
+                singleBomb = Math.floor(Math.random() * 49) + 1;
+        }
+        if (!arrayBomb.includes(singleBomb)) {
+            arrayBomb.push(singleBomb)
+         }
+    }
+    console.log(arrayBomb)
+}
+
 //Event to link btn play to the creation of specific grids
 buttonEl.addEventListener("click", function () {
+    // I reset everything
     containerEl.innerHTML = "";
+    arrayBomb.splice(0, 16);
+    arrayCellGood.splice(0,100)
+    cellsGood = 0;
+
     if (selectEl.value == "easy_lv") {
         difficulty(easy);
     } else if (selectEl.value == "medium_lv") {
@@ -67,42 +97,42 @@ buttonEl.addEventListener("click", function () {
         difficulty(hard);
     }
     const arrayCell = document.querySelectorAll(".single_cell")
-    changeBackground(arrayCell)
+    changeBackground(arrayCell, arrayBomb,cellsGood)
+    arrayBombFunction(arrayBomb);
+    
     
 })
 
-
-const arrayBomb = [];
-let cellGood = 0;
-
-while (arrayBomb.length < 16) {
-    let singleBomb;
-    switch (selectEl.value) {
-        case "easy_lv":
-            singleBomb = Math.floor(Math.random()) * 100 + 1;
-            break;
-        case "easy_medium":
-            singleBomb = Math.floor(Math.random()) * 81 + 1;
-            break;
-        default:
-            singleBomb = Math.floor(Math.random()) * 49 + 1;
-    }
-    if (!arrayBomb.includes(singleBomb)) {
-        arrayBomb.push(singleBomb)
-    }
-}
-console.log(arrayBomb)
-
 //Declair Function to add addEventListener to cell of grid
-function changeBackground(arrayElement) {
+function changeBackground(arrayElement,arrayBomb,cellsGood) {
     for (let i = 0; i < arrayElement.length; i++) {
         const singleCell = arrayElement[i]
         singleCell.addEventListener("click", function () {
             this.classList.add("click_background")
             console.log(this.innerText)
-             // aggiungo un if il numero cliccato è === ad un numero presente nell'array bombe gioco finito 
+            console.log(arrayElement.length - arrayBomb.length);
+                console.log(cellsGood);
+            if(!arrayBomb.includes(Number(this.innerText)) && !arrayCellGood.includes(this.innerText)) {
+                arrayCellGood.push(this.innerText);
+                cellsGood++;
+                console.log(cellsGood)
+                console.log(arrayCellGood)
+                if (cellsGood == arrayElement.length - arrayBomb.length) {
+                const imageWin = `  <div class="bomb_you_lose">
+                <img src="./assets/img/istockphoto-587803682-612x612.jpg" alt="artificere_you_win">
+                <div class="text-white">YOU WIN</div>
+                </div>`
+                document.querySelector(".main_container").insertAdjacentHTML("beforeend", imageWin)}
 
-            })
+            }  else if (arrayCellGood.includes(this.innerText) && !arrayBomb.includes(Number(this.innerText))) {}
+            else {
+                const imageBomb = `  <div class="bomb_you_lose">
+                <img src="./assets/img/sasdad_preview_rev_1.png" alt=" bomba, you lose">
+                <div class="text-white">YOU LOSE</div>
+                </div>`
+                document.querySelector(".main_container").insertAdjacentHTML("beforeend", imageBomb)
+
+            }})
     }
 }
 

@@ -60,6 +60,21 @@
     width: 350px;
 }
 
+.bomb_you_lose {
+    background-color: rgba(0, 0, 0, 0.548);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 80px;
+    position: fixed;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
 
 /* Cell Selector */
 
