@@ -116,7 +116,7 @@ function changeBackground(arrayElement, arrayBomb, cellsGood) {
                 if (cellsGood == arrayElement.length - arrayBomb.length) {
                     const imageWin = `  <div class="bomb_you_lose">
                 <img src="./assets/img/istockphoto-587803682-612x612.jpg" alt="artificere_you_win">
-                <div class="text-white">YOU WIN</div>
+                <div class="text-white text-center">YOU WIN<br> hai evitato una bomba ${cellsGood} volte</div>
                 </div>`
                     document.querySelector(".main_container").insertAdjacentHTML("beforeend", imageWin)
                 }
@@ -125,7 +125,7 @@ function changeBackground(arrayElement, arrayBomb, cellsGood) {
             else {
                 const imageBomb = `  <div class="bomb_you_lose">
                 <img src="./assets/img/sasdad_preview_rev_1.png" alt=" bomba, you lose">
-                <div class="text-white">YOU LOSE</div>
+                <div class="text-white text-center">YOU LOSE <br> hai evitato una bomba ${cellsGood} volte</div>
                 </div>`
                 document.querySelector(".main_container").insertAdjacentHTML("beforeend", imageBomb)
 
