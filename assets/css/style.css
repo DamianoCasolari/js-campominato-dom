@@ -1,0 +1,117 @@
+/* Utility selector  */
+
+:root {
+    --cm-primary : #7fffd4;
+    --cm-personalization: #2619b4;
+    --cm-flash-border: rgb(218, 218, 126);
+}
+
+/* General selector */
+
+#app_header {
+    position: relative;
+    z-index: 2;
+}
+
+#app_footer {
+    height: 100px;
+}
+
+.my_background {
+    background-color:var(--cm-personalization);
+
+}
+
+/* header selector */
+
+.my_btn {
+    background-color: var(--cm-personalization);
+    border: 1px solid;
+    transition-duration: 0.3s;
+    color: white;
+}
+
+
+.my_btn:hover {
+    background-color: rgb(187, 123, 122);
+    
+}
+
+/* Main Selector */
+
+.click_background {
+    background: rgb(187, 123, 122) !important;
+    color: black !important;
+    animation: flashing_number 4s linear infinite alternate;
+}
+.main_container {
+    filter:drop-shadow(0 0 16px var(--cm-flash-border)) ;
+    animation: flashing_border 4s linear infinite alternate;
+
+}
+
+#img_container {
+    position: absolute;
+    top: 0;
+    transition: opacity 0.5s;
+
+}
+.explosion {
+    width: 350px;
+}
+
+
+/* Cell Selector */
+
+.single_cell {
+    cursor: pointer;
+    background-color: var(--cm-personalization);
+    transition-duration: 0.2s;
+    color: var(--cm-flash-border);
+   
+}
+
+.single_cell:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 8px black;
+    z-index: 2;
+    
+    
+}
+
+.cell {
+    width: calc(100% / 10);
+    aspect-ratio: 1 / 1;
+    border: 1px solid var(--cm-flash-border);
+}
+
+.cell2 {
+    width: calc(100% / 9);
+    aspect-ratio: 1 / 1;
+    border: 1px solid var(--cm-flash-border);
+}
+
+.cell3 {
+    width: calc(100% / 7);
+    aspect-ratio: 1 / 1;
+    border: 1px solid var(--cm-flash-border);
+}
+
+
+/* ANIMATION  */
+
+
+
+@keyframes flashing_border {
+    from {
+        filter:drop-shadow(0 0 16px var(--cm-flash-border)) ;
+    } to {
+        filter:drop-shadow(0 0 24px var(--cm-flash-border)) ;    }
+}
+@keyframes flashing_number {
+    from {
+        filter:brightness(1);
+    } to {
+        filter:brightness(1.4); ;    }
+}
+

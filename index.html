@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train ticket</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"
+        defer></script>
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+</head>
+
+<body>
+    <header id="app_header" class="container-fluid">
+        <div class="container-lg d-flex justify-content-between p-3 flex-wrap">
+            <div class="col-12 col-sm-6 d-flex align-items-center">
+                <div>
+                    <img src="./assets/img/mobile-logo.png" class="img-fluid rounded-circle" alt="Logo" width="100">
+                </div>
+                <h1 class="d-inline-block align-middle">Campo Minato</h1>
+            </div>
+            <div class="d-flex align-items-center justify-content-end col-12 col-sm-6">
+                <select class="form-select w-25 me-3" name="difficulty" id="difficulty">
+                    <option value="easy_lv">Easy</option>
+                    <option value="medium_lv">Medium</option>
+                    <option value="hard_lv">Hard</option>
+                </select>
+                <button class="px-5 py-2 rounded-3 my_btn">Play</button>
+            </div>
+        </div>
+    </header>
+    <!-- end header  -->
+    <main id="app_main" class="my_background d-flex justify-content-center align-items-center">
+        <div class="container-lg d-flex align-items-center">
+            <div id="img_container">
+                <img src="./assets/img/sasdad_preview_rev_1.png" class="img-fluid explosion" alt="explosion">
+            </div>
+            <div class="main_container container-lg m-5 p-0 d-flex flex-wrap">
+
+            </div>
+        </div>
+    </main>
+    <!-- end main  -->
+    <footer id="app_footer" class="fs-6 d-flex align-items-center p">
+        <div class="container-lg px-5 py-3">
+            <div>Made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="#">Bolean</a>
+            </div>
+        </div>
+    </footer>
+    <script src="./assets/js/main.js"></script>
+</body>
+
+</html>
