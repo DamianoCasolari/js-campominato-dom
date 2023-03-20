@@ -68,32 +68,30 @@ buttonEl.addEventListener("click", function () {
     }
     const arrayCell = document.querySelectorAll(".single_cell")
     changeBackground(arrayCell)
+    
 })
 
-// -----------------
 
-// const arrayBomb = [];
-// let cellGood = 0;
+const arrayBomb = [];
+let cellGood = 0;
 
-// while (arrayBomb.length < 16) {
-//     let singleBomb;
-//     switch (selectEl.value) {
-//         case "easy_lv":
-//             singleBomb = Math.floor(Math.random) * 100 + 1;
-//             break;
-//         case "easy_medium":
-//             singleBomb = Math.floor(Math.random) * 81 + 1;
-//             break;
-//         default:
-//             singleBomb = Math.floor(Math.random) * 49 + 1;
-//     }
-//     if (!arrayBomb.includes(singleBomb)) {
-//         arrayBomb.push(singleBomb)
-//     }
-// }
-// console.log(arrayBomb)
-
-// -----------------
+while (arrayBomb.length < 16) {
+    let singleBomb;
+    switch (selectEl.value) {
+        case "easy_lv":
+            singleBomb = Math.floor(Math.random()) * 100 + 1;
+            break;
+        case "easy_medium":
+            singleBomb = Math.floor(Math.random()) * 81 + 1;
+            break;
+        default:
+            singleBomb = Math.floor(Math.random()) * 49 + 1;
+    }
+    if (!arrayBomb.includes(singleBomb)) {
+        arrayBomb.push(singleBomb)
+    }
+}
+console.log(arrayBomb)
 
 //Declair Function to add addEventListener to cell of grid
 function changeBackground(arrayElement) {
@@ -115,19 +113,6 @@ function changeBackground(arrayElement) {
 //nell'addvent listenr changecolor 
 // aggiungo un if il numero cliccato è === ad un numero presente nell'array bombe gioco finito 
 // aggiungo un unità alla array caselle buone seguo con un if (caselle tatali - 16 == variabile casselle buone you win ) 
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
